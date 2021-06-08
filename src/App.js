@@ -24,19 +24,13 @@ const firestore = firebase.firestore();
 
 function App() {
     const [user] = useAuthState(auth);
-    return ( <
-        div className = "App" >
-        <
-        header >
-        <
-        SignOut / >
-        <
-        /header>
+    return ( <div className = "App" >
+        <header >
+        <SignOut/ >
+        </header>
 
-        <
-        section > { user ? < ChatRoom / > : < SignIn / > } <
-        /section> < /
-        div >
+        <section > { user ? < ChatRoom / > : < SignIn / > } </section>
+         </div >
     );
 }
 
@@ -46,19 +40,18 @@ function SignIn() {
         auth.signInWithPopup(provider);
     }
 
-    return ( < >
-        <
-        button onClick = { signInWithGoogle } > Sign in With Google < /button> < / >
+    return ( <>
+        <button onClick = { signInWithGoogle } > Sign in With Google </button>
+         </>
 
     )
 }
 
 function SignOut() {
-    return (auth.currentUser && ( <
-        button className = 'sign-out'
+    return (auth.currentUser && ( <button className = 'sign-out'
         onClick = {
             () => auth.signOut()
-        } > Sign Out < /button>
+        } > Sign Out </button>
     ))
 }
 
@@ -89,31 +82,22 @@ function ChatRoom() {
 
     }
 
-    return ( <
-            >
-            <
-            main > {
+    return ( <>
+            <main> {
                 messages && messages.map(msg => < ChatMessage key = { msg.id }
-                    message = { msg }
-                    />) } <
-                    div ref = { dummy } > < /div>
+                    message = { msg }/>) } 
+                    <div ref = { dummy } > </div>
+</main > 
+<form onSubmit = { sendMessage } >
 
-
-                    <
-                    /main > <
-                    form onSubmit = { sendMessage } >
-
-                    <
-                    input value = { formValue }
+                    <input value = { formValue }
                     onChange = {
                         (e) => setFormValue(e.target.value)
-                    }
-                    /> <
-                    button type = 'submit'
-                    disabled = {!formValue } > Send < /button>
-
-                    <
-                    /form> < / >
+                    }/> 
+                    <button type = 'submit'
+                    disabled = {!formValue } > Send </button>
+</form>
+                     </>
                 )
             }
 
@@ -122,14 +106,10 @@ function ChatRoom() {
                 const messageClass = uid === auth.currentUser.uid ? 'sent' : 'recieved';
 
 
-                return ( < >
-                    <
-                    div className = { `message ${messageClass}` } >
-                    <
-                    p > { text } < /p> < /
-                    div >
-                    <
-                    /> )
+                return ( <>
+                    <div className = { `message ${messageClass}` } >
+                    <p> { text } </p> </div >
+                    </> )
                 }
 
                 export default App;
